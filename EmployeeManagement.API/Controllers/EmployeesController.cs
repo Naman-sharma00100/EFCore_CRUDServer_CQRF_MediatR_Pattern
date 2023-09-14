@@ -1,14 +1,13 @@
 ﻿using EmployeeManagementLibrary.Commands;
-using EmployeeManagementLibrary.Handlers;
 using EmployeeManagementLibrary.Models;
 using EmployeeManagementLibrary.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace EmployeeManagement.API.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("api/[Controller]")]
 	public class EmployeesController : ControllerBase
 	{
@@ -18,7 +17,7 @@ namespace EmployeeManagement.API.Controllers
 			this.mediator = mediator;
 		}
 
-		[HttpGet]
+        [HttpGet]
 		public async Task<List<EmployeeModel>> Get()
 		{
 			return await mediator.Send(new GetEmployeeListQuery());
@@ -31,12 +30,9 @@ namespace EmployeeManagement.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<EmployeeModel> Add([FromBody]EmployeeModel employeeModel)
+		public async Task<EmployeeModel> Add([FromBody] EmployeeModel employeeModel)
 		{
 			return await mediator.Send(new AddEmployeeCommand(employeeModel.FirstName, employeeModel.LastName));
 		}
-
-
-
 	}
 }

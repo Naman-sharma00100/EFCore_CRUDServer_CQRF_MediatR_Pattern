@@ -1,0 +1,24 @@
+﻿@model EmployeeManagementLibrary.Models.EmployeeModel
+
+@{
+    Layout = null; // This ensures that no layout is used for this view
+}
+
+<h1>Enter Details</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="formcontainer">
+        <hr />
+        <div class="container">
+            <label for="FirstName"><strong>First Name</strong></label>
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+            <label for="LastName"><strong>Last Name</strong></label>
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit">Add Employee</button>
+    </div>
+}

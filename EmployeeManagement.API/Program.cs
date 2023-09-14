@@ -3,6 +3,7 @@ using EmployeeManagementLibrary.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -29,12 +30,24 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-
-
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
+
+
+app.UseRouting();
 app.UseAuthorization();
 
-app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id?}");
+/*	endpoints.MapControllerRoute(
+		name: "employees",
+		pattern: "employees/{action=Index}/{id?}",
+		defaults: new { controller = "Employees" });*/
+});
 
 app.Run();

@@ -1,0 +1,23 @@
+﻿@model List<EmployeeManagementLibrary.Models.EmployeeModel>
+
+@{
+    Layout = null; // This ensures that no layout is used for this view
+}
+
+<h1>Employee List</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+        </tr>
+    }
+</table>

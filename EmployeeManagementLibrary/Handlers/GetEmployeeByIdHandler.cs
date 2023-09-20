@@ -21,7 +21,7 @@ namespace EmployeeManagementLibrary.Handlers
 		public async Task<EmployeeModel> Handle(GetEmployeeByIdQuery query,CancellationToken cancellationToken)
 		{
 			List<EmployeeModel> employeeList = dataAccess.GetEmployees();
-			EmployeeModel employee = employeeList.First(x=>x.Id == query.id);
+			EmployeeModel employee = employeeList.FirstOrDefault(x=>x.Id == query.id);
 			if(employee == null)
 			{
 				employee = new EmployeeModel();
